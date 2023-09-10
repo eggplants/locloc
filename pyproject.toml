@@ -29,6 +29,8 @@ fastapi = "^0.103.1"
 gitpython = "^3.1.35"
 pytokei = "^0.2.0"
 pydantic = "^2.3.0"
+uvicorn = "^0.23.2"
+jinja2 = "^3.1.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = ">=0.991,<1.6"
@@ -76,6 +78,7 @@ protocols = true
 strict_import = true
 
 [tool.taskipy.tasks]
+run = "python -m locloc.main"
 test = "pytest --cov=locloc --cov-report=term"
 "test:ci" = "task test --cov-report=xml:cov.xml"
 lint = "pre-commit run -a"
