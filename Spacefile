@@ -10,3 +10,8 @@ micros:
       - "/*"
     run: "uvicorn locloc.main:app"
     # dev: "poetry run uvicorn locloc.main:app --reload"
+    # presets:
+    #   env:
+    #     - name: GIT_PYTHON_GIT_EXECUTABLE
+    #       description: Git executable to run GitPython.
+    #       default: "git.bin"
