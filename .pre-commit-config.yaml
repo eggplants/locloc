@@ -23,6 +23,10 @@ repos:
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
+- repo: https://github.com/Riverside-Healthcare/djLint
+  rev: v1.32.1
+  hooks:
+  - id: djlint-reformat-jinja
 - repo: https://github.com/tox-dev/pyproject-fmt
   rev: 1.0.0
   hooks:
@@ -46,6 +50,7 @@ repos:
     - fastapi
     - gitpython
     - pytokei
+    - slowapi
     - uvicorn
 - repo: https://github.com/igorshubovych/markdownlint-cli
   rev: v0.35.0
