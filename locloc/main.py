@@ -39,7 +39,7 @@ app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 @app.get("/res", response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def res(
-    request: Request, # noqa: ARG001
+    request: Request,  # noqa: ARG001
     url: Annotated[HttpUrl, Query(max_length=255)],
     *,
     branch: Annotated[Optional[str], Query(max_length=255)] = None,  # noqa: FA100
