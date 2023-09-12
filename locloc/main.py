@@ -15,7 +15,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 from starlette.templating import _TemplateResponse
-from timeout_decorator import TimeoutError
+from timeout_decorator import TimeoutError  # type: ignore[import]
 
 from . import __version__
 from .loc import get_loc_stats, get_loc_svg
@@ -39,9 +39,10 @@ app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 @app.get("/res", response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def res(
-    request: Request,
+    request: Request, # noqa: ARG001
     url: Annotated[HttpUrl, Query(max_length=255)],
-    branch: Annotated[Optional[str], Query(max_length=255)] = None,
+    *,
+    branch: Annotated[Optional[str], Query(max_length=255)] = None,  # noqa: FA100
     is_svg: bool = False,
 ) -> JSONResponse:
     try:
@@ -51,9 +52,9 @@ async def res(
         )
         svg = get_loc_svg(result) if is_svg else None
     except GitCommandError:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST) from None
     except TimeoutError:
-        raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT)
+        raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT) from None
     return JSONResponse(
         content={
             "result": jsonable_encoder(result),
@@ -65,13 +66,7 @@ async def res(
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request) -> _TemplateResponse:
-    return templates.TemplateResponse(
-        "index.j2",
-        {
-            "request": request,
-            "version": __version__,
-        },
-    )
+    return templates.TemplateResponse("index.j2", {"request": request, "version": __version__})
 
 
 def main() -> None:

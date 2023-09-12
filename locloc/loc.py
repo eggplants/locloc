@@ -4,8 +4,9 @@ from tempfile import TemporaryDirectory
 
 from git.repo import Repo
 from pydantic import BaseModel, HttpUrl, RootModel
+from pygal import HorizontalBar  # type: ignore[import]
 from pytokei import Config, Languages
-from timeout_decorator import timeout
+from timeout_decorator import timeout  # type: ignore[import]
 
 
 class Total(BaseModel):
@@ -22,7 +23,7 @@ TotalByLanguageDict = RootModel[dict[str, Total]]
 __TIMEOUT_SECONDS = 10.0
 
 
-@timeout(__TIMEOUT_SECONDS)
+@timeout(__TIMEOUT_SECONDS)  # type: ignore[misc]
 def get_loc_stats(url: HttpUrl, branch: str | None = None) -> tuple[TotalByLanguageDict, Total]:
     with TemporaryDirectory(prefix="tmp_", dir=".") as tmpdir_path:
         repo = Repo.clone_from(
@@ -49,6 +50,7 @@ def get_loc_stats(url: HttpUrl, branch: str | None = None) -> tuple[TotalByLangu
 
 def get_loc_svg(result: TotalByLanguageDict) -> str:
     bar_chart = HorizontalBar(inner_radius=0.4)
-    for language in result:
-        bar_chart.add(language, result[language].model_dump)
-    bar_chart.render()
+    result_dict = result.model_dump()
+    for language in result_dict:
+        bar_chart.add(language, result_dict[language])
+    return str(bar_chart.render())
