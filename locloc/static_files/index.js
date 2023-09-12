@@ -38,50 +38,50 @@ const getLocData = async (url, branch) => {
 };
 
 const addThead = (tableElm, _body) => {
-      const theadElm = document.createElement("thead");
-      const theadTrElm = document.createElement("tr");
-      headerTexts.forEach((headerText) => {
-        const theadThElm = document.createElement("th");
-        theadThElm.innerText = headerText;
-        theadTrElm.appendChild(theadThElm);
-      });
-      theadElm.appendChild(theadTrElm);
-      tableElm.appendChild(theadElm);
+  const theadElm = document.createElement("thead");
+  const theadTrElm = document.createElement("tr");
+  headerTexts.forEach((headerText) => {
+    const theadThElm = document.createElement("th");
+    theadThElm.innerText = headerText;
+    theadTrElm.appendChild(theadThElm);
+  });
+  theadElm.appendChild(theadTrElm);
+  tableElm.appendChild(theadElm);
 };
 
 const addTbody = (tableElm, body) => {
-      const tbodyElm = document.createElement("tbody");
-      Object.keys(body.result).forEach((languageText) => {
-        const total = body.result[languageText];
-        const tbodyTrElm = document.createElement("tr");
-        const tbodyThElm = document.createElement("th");
-        tbodyThElm.innerText = languageText;
-        tbodyTrElm.appendChild(tbodyThElm);
+  const tbodyElm = document.createElement("tbody");
+  Object.keys(body.result).forEach((languageText) => {
+    const total = body.result[languageText];
+    const tbodyTrElm = document.createElement("tr");
+    const tbodyThElm = document.createElement("th");
+    tbodyThElm.innerText = languageText;
+    tbodyTrElm.appendChild(tbodyThElm);
 
-        headerTexts.slice(1).forEach((headerText) => {
-          const tbodyTdElm = document.createElement("td");
-          tbodyTdElm.innerText = total[headerText];
-          tbodyTrElm.appendChild(tbodyTdElm);
-        });
-        tbodyElm.appendChild(tbodyTrElm);
-      });
-      tableElm.appendChild(tbodyElm);
+    headerTexts.slice(1).forEach((headerText) => {
+      const tbodyTdElm = document.createElement("td");
+      tbodyTdElm.innerText = total[headerText];
+      tbodyTrElm.appendChild(tbodyTdElm);
+    });
+    tbodyElm.appendChild(tbodyTrElm);
+  });
+  tableElm.appendChild(tbodyElm);
 };
 
 const addTfoot = (tableElm, body) => {
-      const tfootElm = document.createElement("tfoot");
-      const tfootTrElm = document.createElement("tr");
-      const tfootThElm = document.createElement("th");
-      tfootThElm.innerText = "Total";
-      tfootTrElm.appendChild(tfootThElm);
+  const tfootElm = document.createElement("tfoot");
+  const tfootTrElm = document.createElement("tr");
+  const tfootThElm = document.createElement("th");
+  tfootThElm.innerText = "Total";
+  tfootTrElm.appendChild(tfootThElm);
 
-      headerTexts.slice(1).forEach((headerText) => {
-        const tfootTdElm = document.createElement("td");
-        tfootTdElm.innerText = body.total[headerText];
-        tfootTrElm.appendChild(tfootTdElm);
-      });
-      tfootElm.appendChild(tfootTrElm);
-      tableElm.appendChild(tfootElm);
+  headerTexts.slice(1).forEach((headerText) => {
+    const tfootTdElm = document.createElement("td");
+    tfootTdElm.innerText = body.total[headerText];
+    tfootTrElm.appendChild(tfootTdElm);
+  });
+  tfootElm.appendChild(tfootTrElm);
+  tableElm.appendChild(tfootElm);
 };
 
 const updateResult = () => {
@@ -104,9 +104,9 @@ const updateResult = () => {
       errorElm.innerText = "";
       const tableElm = document.createElement("table");
 
-      addThead(tableElm, body)
-      addTbody(tableElm, body)
-      addTfoot(tableElm, body)
+      addThead(tableElm, body);
+      addTbody(tableElm, body);
+      addTfoot(tableElm, body);
 
       const tableCaptionElm = document.createElement("caption");
       const repoUrl = decodeURIComponent(url);
