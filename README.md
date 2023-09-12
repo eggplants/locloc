@@ -5,7 +5,7 @@
   )](
   <https://badge.fury.io/py/locloc>
 ) [![Maintainability](
-  <https://api.codeclimate.com/v1/badges/@@@@@@@@@@@@@@@/maintainability>
+  <https://api.codeclimate.com/v1/badges/2a065d7fbf4b174b0f94/maintainability>
   )](
   <https://codeclimate.com/github/eggplants/locloc/maintainability>
 ) [![pre-commit.ci status](
@@ -13,7 +13,7 @@
   )](
   <https://results.pre-commit.ci/latest/github/eggplants/locloc/master>
 ) [![Test Coverage](
-  <https://api.codeclimate.com/v1/badges/@@@@@@@@@@@@@@@@@/test_coverage>
+  <https://api.codeclimate.com/v1/badges/2a065d7fbf4b174b0f94/test_coverage>
   )](
   <https://codeclimate.com/github/eggplants/locloc/test_coverage>
 ) [![Test](
