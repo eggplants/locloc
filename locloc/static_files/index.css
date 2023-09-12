@@ -1,16 +1,17 @@
-      body {
-        text-align: center;
-      }
-      #result {
-        padding-block: 10px;
-      }
-      table {
-        padding-inline: 100px;
-        caption-side: bottom;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      th, td {
-        border: dashed black 1px;
-        padding: 10px;
-      }
+body {
+  text-align: center;
+}
+#result {
+  padding-block: 10px;
+}
+table {
+  padding-inline: 100px;
+  caption-side: bottom;
+  margin-left: auto;
+  margin-right: auto;
+}
+th,
+td {
+  border: dashed black 1px;
+  padding: 10px;
+}

@@ -6,4 +6,3 @@ theme_color: "#EAA822"
 git: "https://github.com/eggplants/locloc"
 homepage: "https://locloc.egpl.dev"
 ---
-
