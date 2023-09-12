@@ -1,0 +1,14 @@
+poetry.lock
+publish_to_deta.sh
+pyproject.toml
+README.md
+
+*.pyc
+.gitignore
+locloc/
+.git/
+.github/
+.space/
+.mypy_cache
+.ruff_cache
+__pycache__/
