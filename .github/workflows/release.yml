@@ -35,7 +35,7 @@ jobs:
     - name: Build and publish to pypi
       uses: JRubics/poetry-publish@v1.17
       with:
-        pypi_token: ${{ secrets.PYPI_PASSWORD }}
+        pypi_token: ${{ secrets.PYPI_TOKEN }}
   ghcr:
     needs: release
     runs-on: ubuntu-latest
