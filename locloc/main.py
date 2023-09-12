@@ -3,13 +3,13 @@ import os
 from pathlib import Path
 from typing import Annotated, Optional
 
-from git.exc import GitCommandError
 import uvicorn
-from fastapi import FastAPI, Request, Query, status, HTTPException
+from fastapi import FastAPI, HTTPException, Query, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from git.exc import GitCommandError
 from pydantic import HttpUrl
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -35,36 +35,43 @@ templates = Jinja2Templates(directory=resource_root_path / "templates")
 
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 
+
 @app.get("/res", response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def res(
-  request: Request,
-  url: Annotated[HttpUrl, Query(max_length=255)],
-  branch: Annotated[Optional[str], Query(max_length=255)] = None,
-  is_svg: bool = False,
-) -> JSONResponse:  # noqa: FA100
+    request: Request,
+    url: Annotated[HttpUrl, Query(max_length=255)],
+    branch: Annotated[Optional[str], Query(max_length=255)] = None,
+    is_svg: bool = False,
+) -> JSONResponse:
     try:
-      result, total = get_loc_stats(
-        url,
-        branch if branch is not None and branch != "" else None,
-      )
-      svg = get_loc_svg(result) if is_svg else None
+        result, total = get_loc_stats(
+            url,
+            branch if branch is not None and branch != "" else None,
+        )
+        svg = get_loc_svg(result) if is_svg else None
     except GitCommandError:
-      raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
     except TimeoutError:
-      raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT)
-    return JSONResponse(content={
-      "result": jsonable_encoder(result),
-      "total": jsonable_encoder(total),
-      "svg": jsonable_encoder(svg),
-    })
+        raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT)
+    return JSONResponse(
+        content={
+            "result": jsonable_encoder(result),
+            "total": jsonable_encoder(total),
+            "svg": jsonable_encoder(svg),
+        },
+    )
+
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request) -> _TemplateResponse:
-    return templates.TemplateResponse("index.j2", {
-       "request": request,
-       "version": __version__,
-    })
+    return templates.TemplateResponse(
+        "index.j2",
+        {
+            "request": request,
+            "version": __version__,
+        },
+    )
 
 
 def main() -> None:
