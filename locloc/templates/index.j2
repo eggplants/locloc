@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>locloc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description"
+          content="Online LOC counter">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/favicon.png">
+    <meta property="og:site_name" content="locloc">
+    <meta property="og:url" content="https://locloc.egpl.dev">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="locloc">
+    <meta property="og:description"
+          content="Online LOC counter">
+    <meta property="og:image"
+          content="https://locloc.egpl.dev/static/favicon.png">
+    <meta property="og:image:width" content="160">
+    <meta property="og:image:height" content="160">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@egpl0">
+    <meta name="twitter:description"
+          content="Online LOC counter">
+    <meta name="twitter:image:src"
+          content="https://locloc.egpl.dev/static/favicon.png">
+    <link href="/static/index.css" rel="stylesheet" />
+    <script src="/static/index.js"></script>
+  </head>
+  <body>
+    <header>
+    <h1>locloc</h1>
+    </header>
+    <main>
+    <form onsubmit="updateResult()" method="dialog">
+      <fieldset id="form_fieldset">
+        <input id="url" maxlength="255" type="url" value="https://github.com/eggplants/zutool" placeholder="valid git repo url" required>
+        <input id="branch" maxlength="255" type="text" value="" placeholder="branch">
+        <input id="submit" type="submit" value="Go!">
+        <div id="error" style="color: red"></div>
+      </fieldset>
+    </form>
+    <div id="result"></div>
+    </main>
+    <footer>
+    <hr>
+          <span>
+        <a href="https://github.com/eggplants/locloc" target="_blank">eggplants/locloc</a> / v{{ version }}
+      </span>
+      <span>
+      <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Flocloc.egpl.dev">
+      <img alt="w3 valid html 4.01"
+               src="https://raw.githubusercontent.com/bradleytaunt/html5-valid-badge/master/html5-validator-badge.svg">
+      </a>
+      </span>
+    </footer>
+  </body>
+</html>
