@@ -14,14 +14,20 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
-description = "Count LOC online"
+description = "Online LOC counter"
 keywords = ["loc", "web"]
 name = "locloc"
-packages = [{include = "locloc"}]
+packages = [
+  {include = "locloc"},
+]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/eggplants/locloc"
 version = "0.0.0"
+include = [
+  { path = "locloc/static_files", format = ["sdist", "wheel"] },
+  { path = "locloc/templates", format = ["sdist", "wheel"] },
+]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"
@@ -31,6 +37,9 @@ pytokei = "^0.2.0"
 pydantic = "^2.3.0"
 uvicorn = "^0.23.2"
 jinja2 = "^3.1.2"
+slowapi = "^0.1.8"
+timeout-decorator = "^0.5.0"
+pygal = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 mypy = ">=0.991,<1.6"
@@ -78,7 +87,8 @@ protocols = true
 strict_import = true
 
 [tool.taskipy.tasks]
-run = "python -m locloc.main"
+start = "uvicorn locloc.main:app"
+dev = "uvicorn locloc.main:app --reload"
 test = "pytest --cov=locloc --cov-report=term"
 "test:ci" = "task test --cov-report=xml:cov.xml"
 lint = "pre-commit run -a"
