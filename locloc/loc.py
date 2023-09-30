@@ -19,7 +19,7 @@ class Total(BaseModel):
 
 TotalByLanguageDict = RootModel[dict[str, Total]]
 
-__TIMEOUT_SECONDS = 10.0
+__TIMEOUT_SECONDS = 30.0
 
 
 @timeout(__TIMEOUT_SECONDS)  # type: ignore[misc]
