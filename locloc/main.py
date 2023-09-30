@@ -34,6 +34,14 @@ templates = Jinja2Templates(directory=resource_root_path / "templates")
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 
 
+@app.get(
+    "/healthcheck",
+    status_code=status.HTTP_200_OK,
+)
+def healthcheck() -> Response:
+    return Response(content="OK", media_type="text/plain")
+
+
 @app.get("/res", response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def res(
