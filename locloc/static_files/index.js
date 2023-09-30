@@ -109,37 +109,34 @@ const updateResult = () => {
       return;
     }
     errorElm.innerText = "";
-    const tableElm = document.createElement("table");
 
+    // table
+    const tableElm = document.createElement("table");
     addThead(tableElm, body);
     addTbody(tableElm, body);
     addTfoot(tableElm, body);
-
     const tableCaptionElm = document.createElement("caption");
     const repoUrl = decodeURIComponent(url);
     tableCaptionElm.innerHTML = [
       `Repo: <a href="${repoUrl}">${repoUrl}</a>`,
       `, Branch: ${escapeHTML(branch || "(empty)")}</div>`,
     ].join("");
-
     tableElm.appendChild(tableCaptionElm);
 
-    if (document.getElementsByTagName("table").length > 0) {
-      resultElm.appendChild(document.createElement("hr"));
-    }
-    resultElm.appendChild(tableElm);
-
-    const svgBody = body.svg;
-    if (svgBody === null) {
-      return;
-    }
+    // badge
     const badgeElm = document.createElement("div");
     badgeElm.classList.add("badge");
     const badgeLinkElm = document.createElement("a");
     badgeLinkElm.href = `${window.origin}/svg?url=${url}&branch=${branch}`;
     badgeLinkElm.target = "_blank";
-    badgeLinkElm.innerHTML = svgBody;
+    badgeLinkElm.innerHTML = body.svg;
     badgeElm.appendChild(badgeLinkElm);
-    resultElm.appendChild(badgeElm);
+
+    // add table + badge
+    if (document.getElementsByTagName("table").length > 0) {
+      resultElm.prepend(document.createElement("hr"));
+    }
+    resultElm.prepend(badgeElm);
+    resultElm.prepend(tableElm);
   });
 };
