@@ -1,10 +1,11 @@
 import importlib.resources
 import os
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Annotated, Optional
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Query, Request, status
+from fastapi import FastAPI, HTTPException, Query, Request, Response, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -29,9 +30,6 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 templates = Jinja2Templates(directory=resource_root_path / "templates")
-
-# @app.get("/")
-# async def root():
 
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 
@@ -60,6 +58,36 @@ async def res(
             "result": jsonable_encoder(result),
             "total": jsonable_encoder(total),
             "svg": jsonable_encoder(svg),
+        },
+    )
+
+
+@app.get("/svg", response_class=HTMLResponse)
+@limiter.limit("6/minute")
+async def svg(
+    request: Request,  # noqa: ARG001
+    url: Annotated[HttpUrl, Query(max_length=255)],
+    *,
+    branch: Annotated[Optional[str], Query(max_length=255)] = None,  # noqa: FA100
+) -> Response:
+    try:
+        result, _total = get_loc_stats(
+            url,
+            branch if branch is not None and branch != "" else None,
+        )
+        svg = get_loc_svg(result)
+    except GitCommandError:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST) from None
+    except TimeoutError:
+        raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT) from None
+    expiry_time = datetime.now(tz=timezone.utc) + timedelta(3666)
+    return Response(
+        content=svg,
+        media_type="image/svg+xml",
+        headers={
+            "Cache-Control": "max-age=3666,s-maxage=3666,no-store,proxy-revalidate",
+            "Expires": expiry_time.strftime("%a, %d %b %Y %H:%M:%S GMT"),
+            "Pragma": "no-cache",
         },
     )
 

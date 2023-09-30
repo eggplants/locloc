@@ -19,7 +19,6 @@ class Total(BaseModel):
 
 TotalByLanguageDict = RootModel[dict[str, Total]]
 
-
 __TIMEOUT_SECONDS = 10.0
 
 
@@ -48,9 +47,16 @@ def get_loc_stats(url: HttpUrl, branch: str | None = None) -> tuple[TotalByLangu
     return result, total
 
 
-def get_loc_svg(result: TotalByLanguageDict) -> str:
-    bar_chart = HorizontalBar(inner_radius=0.4)
+def get_loc_svg(result: TotalByLanguageDict) -> bytes:
+    bar_chart = HorizontalBar(
+        inner_radius=0.4,
+        title="LOC by language",
+    )
     result_dict = result.model_dump()
     for language in result_dict:
-        bar_chart.add(language, result_dict[language])
-    return str(bar_chart.render())
+        # TODO(me): `result_dict[language]` should be typed as Typeddict of `Total`. # noqa: FIX002
+        # https://github.com/pydantic/pydantic/issues/7708
+        loc = int(result_dict[language]["code"])  # type: ignore[index]
+        if loc > 0:
+            bar_chart.add(language, loc)
+    return bytes(bar_chart.render())
