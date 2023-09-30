@@ -23,7 +23,7 @@ packages = [
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/eggplants/locloc"
-version = "0.0.2"
+version = "0.0.3"
 include = [
   { path = "locloc/static_files", format = ["sdist", "wheel"] },
   { path = "locloc/templates", format = ["sdist", "wheel"] },
