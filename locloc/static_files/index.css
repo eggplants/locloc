@@ -4,6 +4,11 @@ body {
 #result {
   padding-block: 10px;
 }
+div.badge {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 table {
   padding-inline: 100px;
   caption-side: bottom;

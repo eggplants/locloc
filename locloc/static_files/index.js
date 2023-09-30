@@ -22,8 +22,14 @@ const escapeHTML = (unsafeText) =>
   });
 
 const getLocData = async (url, branch) => {
-  const endpoint = new URL(`${window.origin}/res?url=${url}&branch=${branch}`);
-  const response = await fetch(endpoint, {
+  const endpoint = new URL(`${window.origin}`);
+  endpoint.pathname += "res";
+  endpoint.searchParams.append("url", decodeURIComponent(url));
+  endpoint.searchParams.append("is_svg", true);
+  if (branch) {
+    endpoint.searchParams.append("branch", branch);
+  }
+  const response = await fetch(endpoint.toString(), {
     method: "GET",
     mode: "same-origin",
     cache: "no-cache",
@@ -100,27 +106,40 @@ const updateResult = () => {
     formElm.disabled = false;
     if (res.status !== 200) {
       errorElm.innerText = `${res.status} ${res.statusText}`;
-    } else {
-      errorElm.innerText = "";
-      const tableElm = document.createElement("table");
-
-      addThead(tableElm, body);
-      addTbody(tableElm, body);
-      addTfoot(tableElm, body);
-
-      const tableCaptionElm = document.createElement("caption");
-      const repoUrl = decodeURIComponent(url);
-      tableCaptionElm.innerHTML = [
-        `Repo: <a href="${repoUrl}">${repoUrl}</a>`,
-        `, Branch: ${escapeHTML(branch || "(empty)")}</div>`,
-      ].join("");
-
-      tableElm.appendChild(tableCaptionElm);
-
-      if (document.getElementsByTagName("table").length > 0) {
-        resultElm.appendChild(document.createElement("hr"));
-      }
-      resultElm.appendChild(tableElm);
+      return;
     }
+    errorElm.innerText = "";
+    const tableElm = document.createElement("table");
+
+    addThead(tableElm, body);
+    addTbody(tableElm, body);
+    addTfoot(tableElm, body);
+
+    const tableCaptionElm = document.createElement("caption");
+    const repoUrl = decodeURIComponent(url);
+    tableCaptionElm.innerHTML = [
+      `Repo: <a href="${repoUrl}">${repoUrl}</a>`,
+      `, Branch: ${escapeHTML(branch || "(empty)")}</div>`,
+    ].join("");
+
+    tableElm.appendChild(tableCaptionElm);
+
+    if (document.getElementsByTagName("table").length > 0) {
+      resultElm.appendChild(document.createElement("hr"));
+    }
+    resultElm.appendChild(tableElm);
+
+    const svgBody = body.svg;
+    if (svgBody === null) {
+      return;
+    }
+    const badgeElm = document.createElement("div");
+    badgeElm.classList.add("badge");
+    const badgeLinkElm = document.createElement("a");
+    badgeLinkElm.href = `${window.origin}/svg?url=${url}&branch=${branch}`;
+    badgeLinkElm.target = "_blank";
+    badgeLinkElm.innerHTML = svgBody;
+    badgeElm.appendChild(badgeLinkElm);
+    resultElm.appendChild(badgeElm);
   });
 };
