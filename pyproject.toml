@@ -30,7 +30,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4"
+python = ">=3.9,<4"
 fastapi = "^0.103.1"
 gitpython = "^3.1.36"
 pytokei = "^0.2.0"
