@@ -53,10 +53,9 @@ def get_loc_svg(result: TotalByLanguageDict) -> bytes:
         title="LOC by language",
     )
     result_dict = result.model_dump()
-    for language in result_dict:
-        # TODO(me): `result_dict[language]` should be typed as Typeddict of `Total`. # noqa: FIX002
-        # https://github.com/pydantic/pydantic/issues/7708
-        loc = int(result_dict[language]["code"])  # type: ignore[index]
-        if loc > 0:
-            bar_chart.add(language, loc)
+    loc_by_lang = {
+        lang: loc for lang, total in result_dict.items() if (loc := int(total["code"])) > 0  # type: ignore[index]
+    }
+    for language, loc in sorted(loc_by_lang.items(), key=lambda i: i[1], reverse=True):
+        bar_chart.add(language, loc)
     return bytes(bar_chart.render())
