@@ -34,15 +34,16 @@ templates = Jinja2Templates(directory=resource_root_path / "templates")
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
 
 
-@app.get(
+@app.api_route(
     "/healthcheck",
+    methods=["GET", "HEAD"],
     status_code=status.HTTP_200_OK,
 )
 def healthcheck() -> Response:
     return Response(content="OK", media_type="text/plain")
 
 
-@app.get("/res", response_class=HTMLResponse)
+@app.api_route("/res", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def res(
     request: Request,  # noqa: ARG001
@@ -70,7 +71,7 @@ async def res(
     )
 
 
-@app.get("/svg", response_class=HTMLResponse)
+@app.api_route("/svg", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @limiter.limit("6/minute")
 async def svg(
     request: Request,  # noqa: ARG001
@@ -100,7 +101,7 @@ async def svg(
     )
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def root(request: Request) -> _TemplateResponse:
     return templates.TemplateResponse("index.j2", {"request": request, "version": __version__})
 
