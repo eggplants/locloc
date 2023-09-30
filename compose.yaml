@@ -1,0 +1,18 @@
+# docker build -t locloc . && docker run --rm -i -p 8080:8080 locloc
+name: locloc
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: locloc
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8080"
+        protocol: tcp
+networks:
+  default:
+    name: locloc_default
