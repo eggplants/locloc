@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: locloc
+    runtime: docker
+    repo: https://github.com/eggplants/locloc
+    region: singapore
+    plan: free
+    branch: master
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    numInstances: 1
+    healthCheckPath: /healthcheck
