@@ -4,9 +4,9 @@ from tempfile import TemporaryDirectory
 
 from git.repo import Repo
 from pydantic import BaseModel, HttpUrl, RootModel
-from pygal import HorizontalBar  # type: ignore[import]
+from pygal import HorizontalBar  # type: ignore[import,unused-ignore]
 from pytokei import Config, Languages
-from timeout_decorator import timeout  # type: ignore[import]
+from timeout_decorator import timeout  # type: ignore[import,unused-ignore]
 
 
 class Total(BaseModel):
