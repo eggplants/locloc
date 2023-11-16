@@ -733,13 +733,13 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pygal"
-version = "3.0.0"
+version = "3.0.1"
 description = "A Python svg graph plotting library"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 files = [
-    {file = "pygal-3.0.0-py2.py3-none-any.whl", hash = "sha256:9ae06e32dec1422f9cd0d606fe2728f78e0b5d644551137480d8d5806e2426f0"},
-    {file = "pygal-3.0.0.tar.gz", hash = "sha256:2923f95d2e515930aa5a997219dccefbf3d92b7eaf5fc1c9febb95b09935fdb2"},
+    {file = "pygal-3.0.1-py2.py3-none-any.whl", hash = "sha256:5a3ebc203555d1bd72361552822f736d29592fd7de6df870430374ba31798538"},
+    {file = "pygal-3.0.1.tar.gz", hash = "sha256:dd2e2220bc0013a8c43c08c861d1db32601f12aecc243d4d639e7858b9f8af85"},
 ]
 
 [package.extras]
