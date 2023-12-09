@@ -18,6 +18,10 @@
 
 Online LOC counter
 
+## Example
+
+<https://locloc.onrender.com/svg?url=https://github.com/eggplants/locloc>
+
 ![locloc for locloc](https://locloc.onrender.com/svg?url=https%3A%2F%2Fgithub.com%2Feggplants%2Flocloc)
 
 ## Deployment
