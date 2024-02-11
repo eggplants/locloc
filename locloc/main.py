@@ -28,7 +28,7 @@ limiter = Limiter(
 )
 app = FastAPI()
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore[arg-type]
 templates = Jinja2Templates(directory=resource_root_path / "templates")
 
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
