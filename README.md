@@ -13,8 +13,8 @@
 [pre-commit.ci status]: https://results.pre-commit.ci/badge/github/eggplants/locloc/master.svg
 [Test Coverage]: https://api.codeclimate.com/v1/badges/2a065d7fbf4b174b0f94/test_coverage
 [Test]: https://github.com/eggplants/locloc/actions/workflows/test.yml/badge.svg
-[ghcr latest]: https://ghcr-badge.deta.dev/eggplants/locloc/latest_tag?trim=major&label=latest
-[ghcr size]: https://ghcr-badge.deta.dev/eggplants/locloc/size
+[ghcr latest]: https://ghcr-badge.egpl.dev/eggplants/locloc/latest_tag?trim=major&label=latest
+[ghcr size]: https://ghcr-badge.egpl.dev/eggplants/locloc/size
 
 Online LOC counter
 
