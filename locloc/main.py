@@ -16,7 +16,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 from starlette.templating import _TemplateResponse
-from timeout_decorator import TimeoutError  # type: ignore[import,unused-ignore]
+from timeout_decorator import TimeoutError as TDTimeoutError # type: ignore[import,unused-ignore]
 
 from . import __version__
 from .loc import get_loc_stats, get_loc_svg
@@ -60,7 +60,7 @@ async def res(
         svg = get_loc_svg(result) if is_svg else None
     except GitCommandError:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST) from None
-    except TimeoutError:
+    except TDTimeoutError:
         raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT) from None
     return JSONResponse(
         content={
