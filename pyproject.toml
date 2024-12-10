@@ -62,28 +62,23 @@ pytest-cov = ">=4,<7"
 locloc-server = "locloc.main:main"
 
 [tool.black]
-line-length = 120
 target-version = [
   'py39',
 ]
 
 [tool.ruff]
-line-length = 120
-
-[tool.ruff.lint]
-select = [
+lint.select = [
   "ALL",
 ]
-ignore = [
+lint.ignore = [
   "D",
 ]
-mccabe.max-complexity = 18
-per-file-ignores."main.py" = [
+lint.per-file-ignores."main.py" = [
   "T201", # `print` found
 ]
-per-file-ignores."tests/*test_*.py" = [
-  "INP001", # File tests/test_*.py is part of an implicit namespace package. Add an __init__.py.
-  "S101",   # Use of assert detected
+lint.per-file-ignores."tests/*.py" = [
+  "D",
+  "S101", # Use of assert detected
 ]
 
 [tool.mypy]

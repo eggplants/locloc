@@ -16,7 +16,9 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 from starlette.templating import _TemplateResponse
-from timeout_decorator import TimeoutError as TDTimeoutError # type: ignore[import,unused-ignore]
+from timeout_decorator import (  # type: ignore[import-not-found]
+    TimeoutError as TDTimeoutError,
+)
 
 from . import __version__
 from .loc import get_loc_stats, get_loc_svg
@@ -103,7 +105,10 @@ async def svg(
 
 @app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def root(request: Request) -> _TemplateResponse:
-    return templates.TemplateResponse("index.j2", {"request": request, "version": __version__})
+    return templates.TemplateResponse(
+        "index.j2",
+        {"request": request, "version": __version__},
+    )
 
 
 def main() -> None:

@@ -23,7 +23,10 @@ __TIMEOUT_SECONDS = 30.0
 
 
 @timeout(__TIMEOUT_SECONDS)  # type: ignore[misc]
-def get_loc_stats(url: HttpUrl, branch: str | None = None) -> tuple[TotalByLanguageDict, Total]:
+def get_loc_stats(
+    url: HttpUrl,
+    branch: str | None = None,
+) -> tuple[TotalByLanguageDict, Total]:
     with TemporaryDirectory(prefix="tmp_", dir=".") as tmpdir_path:
         repo = Repo.clone_from(
             url=str(url),
@@ -53,7 +56,11 @@ def get_loc_svg(result: TotalByLanguageDict) -> bytes:
         title="LOC by language",
     )
     result_dict = result.model_dump()
-    loc_by_lang = {lang: loc for lang, total in result_dict.items() if (loc := int(total["code"])) > 0}
+    loc_by_lang = {
+        lang: loc
+        for lang, total in result_dict.items()
+        if (loc := int(total["code"])) > 0
+    }
     for language, loc in sorted(loc_by_lang.items(), key=lambda i: i[1], reverse=True):
         bar_chart.add(language, loc)
     return bytes(bar_chart.render())
