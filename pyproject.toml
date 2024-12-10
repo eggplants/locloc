@@ -70,12 +70,12 @@ target-version = [
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
 select = [
   "ALL",
 ]
 ignore = [
   "D",
-  "ANN101",
 ]
 mccabe.max-complexity = 18
 per-file-ignores."main.py" = [
