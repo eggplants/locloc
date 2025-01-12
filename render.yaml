@@ -1,3 +1,4 @@
+version: 1
 services:
 - type: web
   name: locloc
@@ -10,3 +11,5 @@ services:
   dockerContext: .
   numInstances: 1
   healthCheckPath: /healthcheck
+  domains:
+  - locloc.egpl.dev
