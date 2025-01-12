@@ -7,12 +7,12 @@ services:
       dockerfile: Dockerfile
     container_name: locloc
     networks:
-      default: null
+      default:
     ports:
-      - mode: ingress
-        target: 8080
-        published: "8080"
-        protocol: tcp
+    - mode: ingress
+      target: 8080
+      published: '8080'
+      protocol: tcp
 networks:
   default:
     name: locloc_default

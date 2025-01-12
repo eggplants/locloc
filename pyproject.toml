@@ -1,33 +1,54 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
-  "poetry-core",
+  "poetry-core>=2",
 ]
 
-[tool.poetry]
-authors = [
-  "eggplants <w10776e8w@yahoo.co.jp>",
-]
-classifiers = [
-  "License :: OSI Approved :: MIT License",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: Implementation :: CPython",
-]
+[project]
+name = "locloc"
+version = "0.0.5"
 description = "Online LOC counter"
+readme = "README.md"
 keywords = [
   "loc",
   "web",
 ]
-name = "locloc"
+license = { text = "MIT" }
+authors = [
+  { name = "eggplants", email = "w10776e8w@yahoo.co.jp" },
+]
+requires-python = ">=3.9,<4"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Typing :: Typed",
+]
+dependencies = [
+  "fastapi>=0.115.6,<0.116",
+  "gitpython>=3.1.44,<4",
+  "jinja2>=3.1.5,<4",
+  "pydantic>=2.10.5,<3",
+  "pygal>=3.0.5,<4",
+  "pytokei>=0.2,<0.3",
+  "slowapi @ git+https://github.com/laurentS/slowapi",
+  "timeout-decorator>=0.5,<0.6",
+  "uvicorn>=0.34,<0.35",
+]
+urls.Repository = "https://github.com/eggplants/locloc"
+scripts.locloc-server = "locloc.main:main"
+
+[tool.poetry]
+requires-poetry = ">=2.0"
 packages = [
   { include = "locloc" },
 ]
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/eggplants/locloc"
-version = "0.0.5"
 include = [
   { path = "locloc/static_files", format = [
     "sdist",
@@ -39,18 +60,6 @@ include = [
   ] },
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4"
-fastapi = ">=0.103.1,<0.116.0"
-gitpython = "^3.1.36"
-pytokei = "^0.2.0"
-pydantic = "^2.3.0"
-uvicorn = ">=0.23.2,<0.35.0"
-jinja2 = "^3.1.2"
-timeout-decorator = "^0.5.0"
-pygal = "^3.0.0"
-slowapi = { git = "https://github.com/laurentS/slowapi.git" }
-
 [tool.poetry.group.dev.dependencies]
 mypy = ">=0.991,<1.15"
 pre-commit = ">=2.20,<5.0"
@@ -58,8 +67,8 @@ taskipy = "^1.10.3"
 pytest = ">=7.2.2,<9.0.0"
 pytest-cov = ">=4,<7"
 
-[tool.poetry.scripts]
-locloc-server = "locloc.main:main"
+[tool.poetry.requires-plugins]
+poetry-plugin-shell = ">=1.0"
 
 [tool.black]
 target-version = [
@@ -86,8 +95,6 @@ pretty = true
 python_version = "3.9"
 show_error_codes = true
 strict = true
-
-[tool]
 
 [tool.pytype]
 python_version = '3.10'
