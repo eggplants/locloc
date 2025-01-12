@@ -28,7 +28,10 @@ Online LOC counter
 
 [![Website]](https://locloc.egpl.dev)
 
+[![Deploy to Render]](https://render.com/deploy?repo=https://github.com/eggplants/locloc)
+
 [Website]: <https://img.shields.io/website?label=locloc.egpl.dev&url=https%3A%2F%2Flocloc.egpl.dev>
+[Deploy to Render]: <https://render.com/images/deploy-to-render-button.svg>
 
 ## Related work
 
