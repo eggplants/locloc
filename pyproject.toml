@@ -1,12 +1,9 @@
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = [
-  "poetry-core>=2",
-]
+build-backend = "hatchling.build"
+requires = [ "hatchling", "uv-dynamic-versioning" ]
 
 [project]
 name = "locloc"
-version = "0.0.5"
 description = "Online LOC counter"
 readme = "README.md"
 keywords = [
@@ -14,22 +11,17 @@ keywords = [
   "web",
 ]
 license = { text = "MIT" }
-authors = [
-  { name = "eggplants", email = "w10776e8w@yahoo.co.jp" },
-]
-requires-python = ">=3.9,<4"
+authors = [ { name = "eggplants", email = "w10776e8w@yahoo.co.jp" } ]
+requires-python = ">=3.13,<4"
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
   "Typing :: Typed",
 ]
+dynamic = [ "version" ]
 dependencies = [
   "fastapi>=0.115.6,<0.116",
   "gitpython>=3.1.44,<4",
@@ -37,50 +29,52 @@ dependencies = [
   "pydantic>=2.10.5,<3",
   "pygal>=3.0.5,<4",
   "pytokei>=0.2,<0.3",
-  "slowapi @ git+https://github.com/laurentS/slowapi",
+  "slowapi @ git+https://github.com/laurentS/slowapi.git",
   "timeout-decorator>=0.5,<0.6",
   "uvicorn>=0.34,<0.35",
 ]
+
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
 
-[tool.poetry]
-requires-poetry = ">=2.0"
-packages = [
-  { include = "locloc" },
+[dependency-groups]
+dev = [
+  "mypy>=0.991,<1.15",
+  "pre-commit>=2.20,<5",
+  "pytest>=7.2.2,<9",
+  "pytest-cov>=4,<7",
+  "taskipy>=1.10.3,<2",
 ]
+docs = [ "pdoc" ]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+# tool.hatch.version.source is not listed in official schema.
+# https://github.com/ninoseki/uv-dynamic-versioning/issues/21
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build.targets.sdist]
 include = [
-  { path = "locloc/static_files", format = [
-    "sdist",
-    "wheel",
-  ] },
-  { path = "locloc/templates", format = [
-    "sdist",
-    "wheel",
-  ] },
+  "locloc",
+  "locloc/static_files",
+  "locloc/templates",
 ]
 
-[tool.poetry.group.dev.dependencies]
-mypy = ">=0.991,<1.15"
-pre-commit = ">=2.20,<5.0"
-taskipy = "^1.10.3"
-pytest = ">=7.2.2,<9.0.0"
-pytest-cov = ">=4,<7"
-
-[tool.poetry.requires-plugins]
-poetry-plugin-shell = ">=1.0"
-
-[tool.black]
-target-version = [
-  'py39',
+[tool.hatch.build.targets.wheel]
+include = [
+  "locloc",
+  "locloc/static_files",
+  "locloc/templates",
 ]
 
 [tool.ruff]
+line-length = 120
+format.indent-style = "space"
+format.quote-style = "double"
 lint.select = [
   "ALL",
-]
-lint.ignore = [
-  "D",
 ]
 lint.per-file-ignores."main.py" = [
   "T201", # `print` found
@@ -89,20 +83,31 @@ lint.per-file-ignores."tests/*.py" = [
   "D",
   "S101", # Use of assert detected
 ]
+lint.pydocstyle.convention = "google"
 
 [tool.mypy]
 pretty = true
-python_version = "3.9"
+python_version = "3.13"
 show_error_codes = true
 strict = true
 
 [tool.pytype]
-python_version = '3.10'
+python_version = '3.13'
 jobs = '4'
 report_errors = true
 precise_return = true
 protocols = true
 strict_import = true
+
+[tool.uv]
+default-groups = [
+  "dev",
+  "docs",
+]
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "semver"
 
 [tool.taskipy.tasks]
 start = "uvicorn locloc.main:app"
@@ -111,3 +116,4 @@ test = "pytest --cov=locloc --cov-report=term"
 "test:ci" = "task test --cov-report=xml:cov.xml"
 lint = "pre-commit run -a"
 profile = "python -m cProfile"
+gendoc = "pdoc locloc -o ./docs --docformat google"

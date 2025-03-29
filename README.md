@@ -1,20 +1,20 @@
 # locloc
 
 [![PyPI version]](https://badge.fury.io/py/locloc)
-[![Maintainability]](https://codeclimate.com/github/eggplants/locloc/maintainability)
+[![Maintainability]](https://qlty.sh/gh/eggplants/projects/locloc)
 [![pre-commit.ci status]](https://results.pre-commit.ci/latest/github/eggplants/locloc/master)
-[![Test Coverage]](https://codeclimate.com/github/eggplants/locloc/test_coverage)
+[![Test Coverage]](https://qlty.sh/gh/eggplants/projects/locloc)
 [![Test]](https://github.com/eggplants/locloc/actions/workflows/test.yml)
 
 [![ghcr latest] ![ghcr size]](https://github.com/eggplants/locloc/pkgs/container/locloc)
 
-[PyPI version]: https://badge.fury.io/py/locloc.svg
-[Maintainability]: https://api.codeclimate.com/v1/badges/2a065d7fbf4b174b0f94/maintainability
-[pre-commit.ci status]: https://results.pre-commit.ci/badge/github/eggplants/locloc/master.svg
-[Test Coverage]: https://api.codeclimate.com/v1/badges/2a065d7fbf4b174b0f94/test_coverage
-[Test]: https://github.com/eggplants/locloc/actions/workflows/test.yml/badge.svg
-[ghcr latest]: https://ghcr-badge.egpl.dev/eggplants/locloc/latest_tag?trim=major&label=latest
-[ghcr size]: https://ghcr-badge.egpl.dev/eggplants/locloc/size
+[PyPI version]: <https://badge.fury.io/py/locloc.svg>
+[Maintainability]: <https://qlty.sh/badges/31a22de2-6487-40b4-9aa0-9fbb7225e4d6/maintainability.svg>
+[pre-commit.ci status]: <https://results.pre-commit.ci/badge/github/eggplants/locloc/master.svg>
+[Test Coverage]: <https://qlty.sh/badges/31a22de2-6487-40b4-9aa0-9fbb7225e4d6/test_coverage.svg>
+[Test]: <https://github.com/eggplants/locloc/actions/workflows/test.yml/badge.svg>
+[ghcr latest]: <https://ghcr-badge.egpl.dev/eggplants/locloc/latest_tag?trim=major&label=latest>
+[ghcr size]: <https://ghcr-badge.egpl.dev/eggplants/locloc/size>
 
 Online LOC counter
 
