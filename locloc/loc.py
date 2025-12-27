@@ -24,7 +24,7 @@ TotalByLanguageDict = RootModel[dict[str, Total]]
 __TIMEOUT_SECONDS = 30.0
 
 
-@timeout(__TIMEOUT_SECONDS)  # type: ignore[misc]
+@timeout(__TIMEOUT_SECONDS)  # type: ignore[untyped-decorator]
 def get_loc_stats(
     url: HttpUrl,
     branch: str | None = None,
