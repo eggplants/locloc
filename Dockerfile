@@ -13,6 +13,10 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 RUN uv sync --locked --no-dev
 
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
 ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8080
