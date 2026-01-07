@@ -30,7 +30,6 @@ dependencies = [
   "pydantic>=2.10.5,<3",
   "pygal>=3.0.5,<4",
   "pytokei>=0.2,<0.3",
-  "slowapi @ git+https://github.com/laurentS/slowapi.git",
   "timeout-decorator>=0.5,<0.6",
   "uvicorn>=0.34,<0.41",
 ]

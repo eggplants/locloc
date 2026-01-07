@@ -14,9 +14,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from git.exc import GitCommandError
 from pydantic import HttpUrl
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
-from slowapi.util import get_remote_address
 from starlette.templating import _TemplateResponse
 from timeout_decorator import (  # type: ignore[import-not-found]
     TimeoutError as TDTimeoutError,
@@ -26,13 +23,7 @@ from . import __version__
 from .loc import get_loc_stats, get_loc_svg
 
 resource_root_path = Path(str(importlib.resources.files("locloc")))
-limiter = Limiter(
-    key_func=get_remote_address,
-    headers_enabled=True,
-)
 app = FastAPI()
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore[arg-type]
 templates = Jinja2Templates(directory=resource_root_path / "templates")
 
 app.mount("/static", StaticFiles(directory=resource_root_path / "static_files"))
@@ -49,7 +40,7 @@ def healthcheck() -> Response:
 
 
 @app.api_route("/res", methods=["GET", "HEAD"], response_class=HTMLResponse)
-@limiter.limit("6/minute")
+# @limiter.limit("6/minute")
 async def res(
     request: Request,  # noqa: ARG001
     url: Annotated[HttpUrl, Query(max_length=255)],
@@ -91,7 +82,7 @@ async def res(
 
 
 @app.api_route("/svg", methods=["GET", "HEAD"], response_class=HTMLResponse)
-@limiter.limit("6/minute")
+# @limiter.limit("6/minute")
 async def svg(
     request: Request,  # noqa: ARG001
     url: Annotated[HttpUrl, Query(max_length=255)],
