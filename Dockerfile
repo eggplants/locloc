@@ -1,9 +1,19 @@
-FROM python:3
+FROM python:3.14-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-ARG VERSION
-ENV VERSION ${VERSION:-master}
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN python -m pip --no-cache-dir install git+https://github.com/eggplants/locloc@${VERSION}
+COPY . /app
+
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
+ENV UV_NO_DEV=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+RUN uv sync --locked --no-dev
+
+ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8080
-ENTRYPOINT ["python", "-m", "uvicorn", "locloc.main:app", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["uv", "run", "python", "-m", "uvicorn", "locloc.main:app", "--host", "0.0.0.0", "--port", "8080"]
