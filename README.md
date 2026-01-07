@@ -7,7 +7,7 @@
 ) [![ghcr latest] ![ghcr size]](https://github.com/eggplants/locloc/pkgs/container/locloc)
 
 [PyPI version]: <https://badge.fury.io/py/locloc.svg>
-[Test]: <https://github.com/eggplants/locloc/actions/workflows/ci.yml/badge.svg>
+[CI]: <https://github.com/eggplants/locloc/actions/workflows/ci.yml/badge.svg>
 [ghcr latest]: <https://ghcr-badge.egpl.dev/eggplants/locloc/latest_tag?trim=major&label=latest>
 [ghcr size]: <https://ghcr-badge.egpl.dev/eggplants/locloc/size>
 
