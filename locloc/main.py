@@ -135,8 +135,9 @@ async def root(request: Request) -> _TemplateResponse:
         _TemplateResponse: A template response containing the main page.
     """
     return templates.TemplateResponse(
+        request,
         "index.j2",
-        {"request": request, "version": __version__},
+        {"version": __version__},
     )
 
 
