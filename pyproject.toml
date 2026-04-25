@@ -10,7 +10,7 @@ keywords = [
   "loc",
   "web",
 ]
-license = { text = "MIT" }
+license = "MIT"
 authors = [ { name = "eggplants", email = "w10776e8w@yahoo.co.jp" } ]
 requires-python = ">=3.13,<4"
 classifiers = [
@@ -33,7 +33,6 @@ dependencies = [
   "timeout-decorator>=0.5,<0.6",
   "uvicorn>=0.34,<0.41",
 ]
-
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
 
@@ -49,33 +48,28 @@ docs = [
   "pdoc>=16",
 ]
 
-[tool.hatch.metadata]
-allow-direct-references = true
-
-[tool.hatch.version]
-source = "uv-dynamic-versioning"
-
-[tool.hatch.build.targets.sdist]
-include = [
+[tool.hatch]
+build.targets.sdist.include = [
   "locloc",
   "locloc/static_files",
   "locloc/templates",
 ]
-
-[tool.hatch.build.targets.wheel]
-include = [
+build.targets.wheel.include = [
   "locloc",
   "locloc/static_files",
   "locloc/templates",
 ]
+metadata.allow-direct-references = true
+version.source = "uv-dynamic-versioning"
 
 [tool.uv]
-preview = true
+python-downloads = "never"
 default-groups = [
   "dev",
   "docs",
 ]
 exclude-newer = "P7D"
+preview = true
 
 [tool.ruff]
 line-length = 120
@@ -97,6 +91,6 @@ vcs = "git"
 style = "semver"
 fallback-version = "0.0.0"
 
-[tool.taskipy.tasks]
-start = "uvicorn locloc.main:app"
-dev = "uvicorn locloc.main:app --reload"
+[tool.taskipy]
+tasks.start = "uvicorn locloc.main:app"
+tasks.dev = "uvicorn locloc.main:app --reload"
