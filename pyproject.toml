@@ -24,14 +24,14 @@ classifiers = [
 ]
 dynamic = [ "version" ]
 dependencies = [
-  "fastapi>=0.115.6,<0.129",
+  "fastapi>=0.115.6,<0.137",
   "gitpython>=3.1.44,<4",
   "jinja2>=3.1.5,<4",
   "pydantic>=2.10.5,<3",
   "pygal>=3.0.5,<4",
   "pytokei>=0.2,<0.3",
   "timeout-decorator>=0.5,<0.6",
-  "uvicorn>=0.34,<0.41",
+  "uvicorn>=0.34,<0.45",
 ]
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
