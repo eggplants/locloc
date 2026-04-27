@@ -3,11 +3,11 @@ revision = 3
 requires-python = ">=3.13, <4"
 
 [options]
-exclude-newer = "2026-04-20T12:36:04.252712327Z"
+exclude-newer = "2026-04-20T12:38:28.775738995Z"
 exclude-newer-span = "P7D"
 
 [options.exclude-newer-package]
-gitpython = { timestamp = "2026-04-24T12:36:04.252728863Z", span = "P3D" }
+gitpython = { timestamp = "2026-04-24T12:38:28.775747436Z", span = "P3D" }
 
 [[package]]
 name = "annotated-doc"
@@ -263,6 +263,7 @@ wheels = [
 
 [[package]]
 name = "locloc"
+version = "1.0.3"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
