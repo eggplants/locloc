@@ -32,7 +32,7 @@ dependencies = [
   "pygal>=3.0.5,<4",
   "pytokei>=0.2,<0.3",
   "timeout-decorator>=0.5,<0.6",
-  "uvicorn>=0.34,<0.45",
+  "uvicorn>=0.34,<0.47",
 ]
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
