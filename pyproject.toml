@@ -30,7 +30,7 @@ dependencies = [
   "jinja2>=3.1.5,<4",
   "pydantic>=2.10.5,<3",
   "pygal>=3.0.5,<4",
-  "pytokei>=0.2,<0.3",
+  "pytokei==1.0.1",
   "timeout-decorator>=0.5,<0.6",
   "uvicorn>=0.34,<0.45",
 ]
@@ -70,7 +70,7 @@ default-groups = [
   "docs",
 ]
 exclude-newer = "P7D"
-exclude-newer-package = { gitpython = "P3D" }
+exclude-newer-package = { pytokei = "P1D" }
 preview = true
 
 [tool.ruff]
