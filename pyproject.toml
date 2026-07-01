@@ -25,14 +25,14 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "fastapi>=0.115.6,<0.137",
+  "fastapi>=0.115.6,<0.139",
   "gitpython>=3.1.47,<4",
   "jinja2>=3.1.5,<4",
   "pydantic>=2.10.5,<3",
   "pygal>=3.0.5,<4",
   "pytokei==1.0.1",
   "timeout-decorator>=0.5,<0.6",
-  "uvicorn>=0.34,<0.47",
+  "uvicorn>=0.34,<0.50",
 ]
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
