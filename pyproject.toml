@@ -4,7 +4,6 @@ requires = [ "hatchling", "uv-dynamic-versioning" ]
 
 [project]
 name = "locloc"
-# dynamic = [ "version" ]
 version = "0.1.4"
 description = "Online LOC counter"
 readme = "README.md"
@@ -24,6 +23,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Typing :: Typed",
 ]
+# dynamic = [ "version" ]
 dependencies = [
   "fastapi>=0.115.6,<0.137",
   "gitpython>=3.1.47,<4",
@@ -50,18 +50,18 @@ docs = [
 ]
 
 [tool.hatch]
-build.targets.sdist.include = [
-  "locloc",
-  "locloc/static_files",
-  "locloc/templates",
-]
+version.source = "uv-dynamic-versioning"
+metadata.allow-direct-references = true
 build.targets.wheel.include = [
   "locloc",
   "locloc/static_files",
   "locloc/templates",
 ]
-metadata.allow-direct-references = true
-version.source = "uv-dynamic-versioning"
+build.targets.sdist.include = [
+  "locloc",
+  "locloc/static_files",
+  "locloc/templates",
+]
 
 [tool.uv]
 python-downloads = "never"

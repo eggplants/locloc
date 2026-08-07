@@ -53,7 +53,7 @@ def get_loc_stats(
             kill_after_timeout=__TIMEOUT_SECONDS,
         )
         langs = Languages()
-        langs.get_statistics(paths=[str(repo.working_dir)], ignored=[], config=Config())
+        langs.get_statistics([str(repo.working_dir)], [], Config())
     result = TotalByLanguageDict.model_validate(
         dict(
             sorted(

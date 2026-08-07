@@ -1,4 +1,7 @@
 [tools]
+"aqua:azu/dockerfile-pin" = "latest"
+claude = "latest"
+pinact = "latest"
 python = "latest"
 usage = "latest"
 uv = "latest"
@@ -34,7 +37,7 @@ run = "uv build"
 
 [tasks.dev]
 description = "Launch HTTP server in development mode"
-run = "uvicorn locloc.main:app --reload"
+run = "uv run uvicorn locloc.main:app --reload"
 
 [tasks.start]
 description = "Launch HTTP server in production mode"
