@@ -110,7 +110,7 @@ async def svg(
         svg = get_loc_svg(result)
     except GitCommandError:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST) from None
-    except TimeoutError:
+    except TDTimeoutError:
         raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT) from None
     expiry_time = datetime.now(tz=UTC) + timedelta(3666)
     return Response(

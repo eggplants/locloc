@@ -39,6 +39,7 @@ scripts.locloc-server = "locloc.main:main"
 
 [dependency-groups]
 dev = [
+  "httpx2>=2.10,<3",
   "pymarkdownlnt>=0.9.33",
   "pyproject-fmt>=2.11.1",
   "pytest>=9.0.2",
@@ -87,6 +88,17 @@ lint.per-file-ignores."tests/*.py" = [
   "S101", # Use of assert detected
 ]
 lint.pydocstyle.convention = "google"
+
+[tool.pytest]
+ini_options.testpaths = [ "tests" ]
+ini_options.addopts = [ "--strict-markers", "--strict-config" ]
+ini_options.xfail_strict = true
+ini_options.asyncio_default_fixture_loop_scope = "function"
+ini_options.asyncio_mode = "auto"
+
+[tool.coverage]
+run.source = [ "locloc" ]
+report.exclude_also = [ "if __name__ == .__main__.:" ]
 
 [tool.uv-dynamic-versioning]
 vcs = "git"

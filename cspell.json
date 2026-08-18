@@ -8,10 +8,12 @@
     "gitpython",
     "gruntfuggly",
     "healthcheck",
+    "httpx",
     "hverlin",
     "jsonable",
     "locloc",
     "maxage",
+    "monkeypatch",
     "pdoc",
     "pipefail",
     "pydantic",
@@ -26,9 +28,12 @@
     "sdist",
     "slowapi",
     "taskipy",
+    "tokei",
     "tombi",
+    "usefixtures",
     "uvicorn",
-    "venv"
+    "venv",
+    "xfail"
   ],
   "dictionaries": [
     "companies",
