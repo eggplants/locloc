@@ -48,7 +48,8 @@ dependencies = [
   "timeout-decorator>=0.5,<0.6",
   "uvicorn>=0.34,<0.53",
 ]
-urls.Documentation = "https://github.com/eggplants/locloc#readme"
+urls.Documentation = "https://egpl.dev/locloc/"
+urls.Homepage = "https://locloc.egpl.dev"
 urls.Issues = "https://github.com/eggplants/locloc/issues"
 urls.Repository = "https://github.com/eggplants/locloc"
 scripts.locloc-server = "locloc.main:main"
