@@ -40,11 +40,11 @@ run = "uv build"
 
 [tasks.dev]
 description = "Launch HTTP server in development mode"
-run = "uv run uvicorn locloc.main:app --reload"
+run = "uv run uvicorn locloc.cli:app --reload"
 
 [tasks.start]
 description = "Launch HTTP server in production mode"
-run = "uvicorn locloc.main:app"
+run = "uvicorn locloc.cli:app"
 
 [tasks.docs]
 description = "Generate documentation"

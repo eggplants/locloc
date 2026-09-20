@@ -7,6 +7,6 @@ try:
 except importlib.metadata.PackageNotFoundError:
     __version__ = "0.0.0"
 
-from .main import app
+from .cli import app
 
 __all__ = ("__version__", "app")

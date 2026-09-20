@@ -52,7 +52,7 @@ urls.Documentation = "https://egpl.dev/locloc/"
 urls.Homepage = "https://locloc.egpl.dev"
 urls.Issues = "https://github.com/eggplants/locloc/issues"
 urls.Repository = "https://github.com/eggplants/locloc"
-scripts.locloc-server = "locloc.main:main"
+scripts.locloc-server = "locloc.cli:main"
 
 [dependency-groups]
 dev = [
@@ -100,7 +100,7 @@ lint.ignore = [
   "COM812",
   "CPY001", # Missing copyright notice (this project does not use file headers)
 ]
-lint.per-file-ignores."main.py" = [
+lint.per-file-ignores."locloc/cli.py" = [
   "T201", # `print` found
 ]
 lint.per-file-ignores."tests/*.py" = [
@@ -126,5 +126,5 @@ style = "semver"
 fallback-version = "0.0.0"
 
 [tool.taskipy]
-tasks.start = "uvicorn locloc.main:app"
-tasks.dev = "uvicorn locloc.main:app --reload"
+tasks.start = "uvicorn locloc.cli:app"
+tasks.dev = "uvicorn locloc.cli:app --reload"

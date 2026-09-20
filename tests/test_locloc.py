@@ -27,7 +27,7 @@ def test_public_api() -> None:
 
 def test_app_is_the_asgi_application() -> None:
     assert callable(app)
-    assert app is locloc.main.app
+    assert app is locloc.cli.app
 
 
 def test_routes_are_registered() -> None:

@@ -11,7 +11,7 @@ from timeout_decorator import (  # type: ignore[import-not-found]
 )
 
 from locloc import __version__
-from locloc.main import app, main
+from locloc.cli import app, main
 
 if TYPE_CHECKING:
     from fastapi.testclient import TestClient
@@ -36,20 +36,20 @@ def stub_stats(
         calls.append({"url": url, "branch": branch})
         return stats, total
 
-    monkeypatch.setattr("locloc.main.get_loc_stats", fake_get_loc_stats)
-    monkeypatch.setattr("locloc.main.get_loc_svg", lambda _result: SVG_BYTES)
+    monkeypatch.setattr("locloc.cli.get_loc_stats", fake_get_loc_stats)
+    monkeypatch.setattr("locloc.cli.get_loc_svg", lambda _result: SVG_BYTES)
     return calls
 
 
 @pytest.fixture
 def failing_stats(monkeypatch: pytest.MonkeyPatch) -> Any:  # noqa: ANN401
-    """Return a helper that makes :func:`locloc.main.get_loc_stats` raise the given exception."""
+    """Return a helper that makes :func:`locloc.cli.get_loc_stats` raise the given exception."""
 
     def _fail(exc: BaseException) -> None:
         def fake_get_loc_stats(url: Any, branch: Any = None) -> None:  # noqa: ANN401, ARG001
             raise exc
 
-        monkeypatch.setattr("locloc.main.get_loc_stats", fake_get_loc_stats)
+        monkeypatch.setattr("locloc.cli.get_loc_stats", fake_get_loc_stats)
 
     return _fail
 

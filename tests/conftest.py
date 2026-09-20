@@ -7,8 +7,8 @@ import pytest
 from fastapi.testclient import TestClient
 from git.repo import Repo
 
+from locloc.cli import app
 from locloc.loc import Total, TotalByLanguageDict
-from locloc.main import app
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

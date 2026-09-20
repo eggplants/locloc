@@ -20,4 +20,4 @@ RUN apt-get update && \
 ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8080
-ENTRYPOINT ["uv", "run", "python", "-m", "uvicorn", "locloc.main:app", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["uv", "run", "python", "-m", "uvicorn", "locloc.cli:app", "--host", "0.0.0.0", "--port", "8080"]
