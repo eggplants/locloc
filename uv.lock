@@ -330,7 +330,7 @@ wheels = [
 
 [[package]]
 name = "locloc"
-version = "0.2.1"
+version = "0.2.2"
 source = { editable = "." }
 default-groups = ["dev", "docs"]
 dependencies = [
@@ -738,16 +738,16 @@ wheels = [
 
 [[package]]
 name = "pyproject-fmt-py"
-version = "0.0.1"
+version = "0.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
     { name = "tomlkit" },
     { name = "wcwidth" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e5/37/1514f6f8ad8f4363756bd2fc5bcf90589630a98b82a3fb0a26d30338dd43/pyproject_fmt_py-0.0.1.tar.gz", hash = "sha256:dc3659e1d0f3752c318ebc8da52331dffda9933658dc55e0c4aaf8ea3a10550a", size = 80070, upload-time = "2026-09-24T13:20:21.034Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d2/a8/58ad6938e0b9fa409b32056dfed33e6b5055970fa00b8905b04d9a8e62ef/pyproject_fmt_py-0.0.2.tar.gz", hash = "sha256:3c88c03f21bba31020c6697ce98e88523eb3afafd8ced3ddc46c2c5d6680c2df", size = 80636, upload-time = "2026-11-02T17:28:21.484Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a1/45/27fba21360dc25550b64974a71d577db2c928cab5bd8475261ab0e907fd8/pyproject_fmt_py-0.0.1-py3-none-any.whl", hash = "sha256:8aad7816190d065cb93390348dd8dccd4013810d28adf148cf14cefc605ac838", size = 100162, upload-time = "2026-09-24T13:20:19.916Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/0f/543154d95aef3fcfd242c7de650ff882c74e405164747846a8f96730f70a/pyproject_fmt_py-0.0.2-py3-none-any.whl", hash = "sha256:0b5eea80eccdfd88809cd2c68a36030725ddccce1bb6eba9366fc2a42008751d", size = 100177, upload-time = "2026-11-02T17:28:20.207Z" },
 ]
 
 [[package]]
