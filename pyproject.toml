@@ -4,7 +4,7 @@ requires = [ "hatchling", "uv-dynamic-versioning" ]
 
 [project]
 name = "locloc"
-version = "0.2.0"
+version = "0.2.1"
 description = "Online LOC counter"
 readme = "README.md"
 keywords = [
